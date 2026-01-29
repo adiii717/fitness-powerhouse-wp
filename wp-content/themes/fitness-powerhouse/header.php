@@ -123,38 +123,50 @@
                     <div class="columns">
                         <div class="column">
                             <a class="nav-item" href="#">
-                                <img src="<?php echo FPH_URI; ?>/assets/images/categories/treadmills.jpg" alt="Treadmills" style="max-height:200px">
+                                <img src="<?php echo FPH_URI; ?>/assets/images/menu/1-treadmills.png" alt="Treadmills">
                                 <h4 class="menu-title"><?php _e('Treadmills', 'fitness-powerhouse'); ?></h4>
                             </a>
                         </div>
                         <div class="column">
                             <a class="nav-item" href="#">
-                                <img src="<?php echo FPH_URI; ?>/assets/images/categories/exercise-bikes.jpg" alt="Cross Trainers" style="max-height:200px">
+                                <img src="<?php echo FPH_URI; ?>/assets/images/menu/3-cross-trainer.png" alt="Cross Trainers">
                                 <h4 class="menu-title"><?php _e('Cross Trainers', 'fitness-powerhouse'); ?></h4>
                             </a>
                         </div>
                         <div class="column">
                             <a class="nav-item" href="#">
-                                <img src="<?php echo FPH_URI; ?>/assets/images/categories/exercise-bikes.jpg" alt="Spinning Bikes" style="max-height:200px">
+                                <img src="<?php echo FPH_URI; ?>/assets/images/menu/4-spinning-bike.png" alt="Spinning Bikes">
                                 <h4 class="menu-title"><?php _e('Spinning Bikes', 'fitness-powerhouse'); ?></h4>
                             </a>
                         </div>
                         <div class="column">
                             <a class="nav-item" href="#">
-                                <img src="<?php echo FPH_URI; ?>/assets/images/categories/exercise-bikes.jpg" alt="Upright Bikes" style="max-height:200px">
+                                <img src="<?php echo FPH_URI; ?>/assets/images/menu/2-upright-bike.png" alt="Upright Bikes">
                                 <h4 class="menu-title"><?php _e('Upright Bikes', 'fitness-powerhouse'); ?></h4>
                             </a>
                         </div>
                         <div class="column">
                             <a class="nav-item" href="#">
-                                <img src="<?php echo FPH_URI; ?>/assets/images/categories/accessories.jpg" alt="Rowing Machine" style="max-height:200px">
+                                <img src="<?php echo FPH_URI; ?>/assets/images/menu/6-recumbent-bike.png" alt="Recumbent Bike">
+                                <h4 class="menu-title"><?php _e('Recumbent Bike', 'fitness-powerhouse'); ?></h4>
+                            </a>
+                        </div>
+                        <div class="column">
+                            <a class="nav-item" href="#">
+                                <img src="<?php echo FPH_URI; ?>/assets/images/menu/5-Air-bike.png" alt="Air Bike">
+                                <h4 class="menu-title"><?php _e('Air Bike', 'fitness-powerhouse'); ?></h4>
+                            </a>
+                        </div>
+                        <div class="column">
+                            <a class="nav-item" href="#">
+                                <img src="<?php echo FPH_URI; ?>/assets/images/menu/7-rowing-machine.png" alt="Rowing Machine">
                                 <h4 class="menu-title"><?php _e('Rowing Machine', 'fitness-powerhouse'); ?></h4>
                             </a>
                         </div>
                         <div class="column">
                             <a class="nav-item" href="#">
-                                <img src="<?php echo FPH_URI; ?>/assets/images/categories/accessories.jpg" alt="Air Bike" style="max-height:200px">
-                                <h4 class="menu-title"><?php _e('Air Bike', 'fitness-powerhouse'); ?></h4>
+                                <img src="<?php echo FPH_URI; ?>/assets/images/menu/8-stepper.png" alt="Stepper">
+                                <h4 class="menu-title"><?php _e('Stepper', 'fitness-powerhouse'); ?></h4>
                             </a>
                         </div>
                     </div>
@@ -230,32 +242,38 @@
                     <div class="columns">
                         <div class="column">
                             <a class="nav-item" href="#">
-                                <img src="<?php echo FPH_URI; ?>/assets/images/categories/dumbbells.jpg" alt="Kettlebells" style="max-height:200px">
+                                <img src="<?php echo FPH_URI; ?>/assets/images/menu/Weights-01.jpg" alt="Kettlebells">
                                 <h4 class="menu-title"><?php _e('Kettlebells', 'fitness-powerhouse'); ?></h4>
                             </a>
                         </div>
                         <div class="column">
                             <a class="nav-item" href="#">
-                                <img src="<?php echo FPH_URI; ?>/assets/images/categories/dumbbells.jpg" alt="Dumbbells" style="max-height:200px">
+                                <img src="<?php echo FPH_URI; ?>/assets/images/menu/Weights-02.jpg" alt="Dumbbells">
                                 <h4 class="menu-title"><?php _e('Dumbbells', 'fitness-powerhouse'); ?></h4>
                             </a>
                         </div>
                         <div class="column">
                             <a class="nav-item" href="#">
-                                <img src="<?php echo FPH_URI; ?>/assets/images/categories/weight-plates.jpg" alt="Weight Plates" style="max-height:200px">
+                                <img src="<?php echo FPH_URI; ?>/assets/images/menu/Weights-04.jpg" alt="Weight Plates">
                                 <h4 class="menu-title"><?php _e('Weight Plates', 'fitness-powerhouse'); ?></h4>
                             </a>
                         </div>
                         <div class="column">
                             <a class="nav-item" href="#">
-                                <img src="<?php echo FPH_URI; ?>/assets/images/categories/weight-plates.jpg" alt="Barbells" style="max-height:200px">
+                                <img src="<?php echo FPH_URI; ?>/assets/images/menu/Bars-&-Barbells.jpg" alt="Barbells">
                                 <h4 class="menu-title"><?php _e('Barbells', 'fitness-powerhouse'); ?></h4>
                             </a>
                         </div>
                         <div class="column">
                             <a class="nav-item" href="#">
-                                <img src="<?php echo FPH_URI; ?>/assets/images/categories/accessories.jpg" alt="Medicine Ball" style="max-height:200px">
+                                <img src="<?php echo FPH_URI; ?>/assets/images/menu/Slam-Ball.jpg" alt="Medicine Ball">
                                 <h4 class="menu-title"><?php _e('Medicine Ball', 'fitness-powerhouse'); ?></h4>
+                            </a>
+                        </div>
+                        <div class="column">
+                            <a class="nav-item" href="#">
+                                <img src="<?php echo FPH_URI; ?>/assets/images/menu/Weights-05.jpg" alt="Weight Sets">
+                                <h4 class="menu-title"><?php _e('Weight Sets', 'fitness-powerhouse'); ?></h4>
                             </a>
                         </div>
                     </div>

@@ -53,7 +53,7 @@ function fph_benefits_bar() {
 }
 
 /**
- * Display hero slider
+ * Display hero slider using Flickity
  */
 function fph_hero_slider() {
     $slides = array();
@@ -99,23 +99,13 @@ function fph_hero_slider() {
     }
     ?>
     <section class="hero-section">
-        <div class="hero-slider">
-            <?php foreach ($slides as $index => $slide) : ?>
-                <div class="hero-slide<?php echo $index === 0 ? ' active' : ''; ?>">
-                    <img src="<?php echo esc_url($slide['image']); ?>" alt="<?php echo esc_attr($slide['title']); ?>">
-                    <div class="slide-content">
-                        <h2><?php echo esc_html($slide['title']); ?></h2>
-                        <p><?php echo esc_html($slide['subtitle']); ?></p>
-                        <a href="<?php echo esc_url($slide['url']); ?>" class="btn-primary"><?php esc_html_e('Shop Now', 'fitness-powerhouse'); ?></a>
-                    </div>
+        <div class="main-carousel" data-flickity='{"autoPlay": 5000, "wrapAround": true, "pageDots": true, "prevNextButtons": true, "pauseAutoPlayOnHover": true}'>
+            <?php foreach ($slides as $slide) : ?>
+                <div class="carousel-cell" style="width: 100%;">
+                    <a href="<?php echo esc_url($slide['url']); ?>">
+                        <img src="<?php echo esc_url($slide['image']); ?>" alt="<?php echo esc_attr($slide['title']); ?>" style="width: 100%;">
+                    </a>
                 </div>
-            <?php endforeach; ?>
-        </div>
-        <button class="slider-btn prev"><?php echo fph_get_svg_icon('chevron-left'); ?></button>
-        <button class="slider-btn next"><?php echo fph_get_svg_icon('chevron-right'); ?></button>
-        <div class="slider-dots">
-            <?php foreach ($slides as $index => $slide) : ?>
-                <button class="dot<?php echo $index === 0 ? ' active' : ''; ?>" data-slide="<?php echo $index; ?>"></button>
             <?php endforeach; ?>
         </div>
     </section>

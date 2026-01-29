@@ -5,104 +5,28 @@
 (function() {
     'use strict';
 
-    // Hero Slider
-    const heroSlider = {
-        slides: document.querySelectorAll('.hero-slide'),
-        dots: document.querySelectorAll('.slider-dots .dot'),
-        prevBtn: document.querySelector('.hero-section .slider-btn.prev'),
-        nextBtn: document.querySelector('.hero-section .slider-btn.next'),
-        currentSlide: 0,
-        autoPlayInterval: null,
+    // Bulma Mobile Menu Toggle
+    function initBulmaNavbar() {
+        // Get all "navbar-burger" elements
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
 
-        init() {
-            if (this.slides.length === 0) return;
+        // Add a click event on each of them
+        $navbarBurgers.forEach(el => {
+            el.addEventListener('click', () => {
+                // Get the target from the "data-target" attribute
+                const target = el.dataset.target;
+                const $target = document.getElementById(target);
 
-            // Event listeners
-            if (this.prevBtn) {
-                this.prevBtn.addEventListener('click', () => this.prevSlide());
-            }
-            if (this.nextBtn) {
-                this.nextBtn.addEventListener('click', () => this.nextSlide());
-            }
-
-            this.dots.forEach((dot, index) => {
-                dot.addEventListener('click', () => this.goToSlide(index));
+                // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                el.classList.toggle('is-active');
+                $target.classList.toggle('is-active');
             });
-
-            // Auto play
-            this.startAutoPlay();
-
-            // Pause on hover
-            const heroSection = document.querySelector('.hero-section');
-            if (heroSection) {
-                heroSection.addEventListener('mouseenter', () => this.stopAutoPlay());
-                heroSection.addEventListener('mouseleave', () => this.startAutoPlay());
-            }
-        },
-
-        goToSlide(index) {
-            this.slides[this.currentSlide].classList.remove('active');
-            if (this.dots[this.currentSlide]) {
-                this.dots[this.currentSlide].classList.remove('active');
-            }
-
-            this.currentSlide = index;
-
-            this.slides[this.currentSlide].classList.add('active');
-            if (this.dots[this.currentSlide]) {
-                this.dots[this.currentSlide].classList.add('active');
-            }
-        },
-
-        nextSlide() {
-            const next = (this.currentSlide + 1) % this.slides.length;
-            this.goToSlide(next);
-        },
-
-        prevSlide() {
-            const prev = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
-            this.goToSlide(prev);
-        },
-
-        startAutoPlay() {
-            this.autoPlayInterval = setInterval(() => this.nextSlide(), 4000);
-        },
-
-        stopAutoPlay() {
-            clearInterval(this.autoPlayInterval);
-        }
-    };
-
-    // Product Slider Navigation
-    function initProductSliders() {
-        const sections = document.querySelectorAll('.products-section');
-
-        sections.forEach(section => {
-            const slider = section.querySelector('.products-slider');
-            const prevBtn = section.querySelector('.slider-nav.prev');
-            const nextBtn = section.querySelector('.slider-nav.next');
-
-            if (!slider) return;
-
-            const scrollAmount = 300;
-
-            if (prevBtn) {
-                prevBtn.addEventListener('click', () => {
-                    slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-                });
-            }
-
-            if (nextBtn) {
-                nextBtn.addEventListener('click', () => {
-                    slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-                });
-            }
         });
     }
 
     // Mega Menu Overlay
     function initMegaMenu() {
-        const navItems = document.querySelectorAll('.nav-item.has-mega-menu');
+        const navItems = document.querySelectorAll('.navbar-heading.has-dropdown.is-mega');
         const overlay = document.querySelector('.desktop-overlay');
 
         navItems.forEach(item => {
@@ -114,19 +38,6 @@
                 if (overlay) overlay.classList.remove('active');
             });
         });
-    }
-
-    // Mobile Menu Toggle
-    function initMobileMenu() {
-        const toggle = document.querySelector('.mobile-menu-toggle');
-        const nav = document.querySelector('.secondary-nav');
-
-        if (toggle && nav) {
-            toggle.addEventListener('click', () => {
-                nav.classList.toggle('mobile-open');
-                toggle.classList.toggle('active');
-            });
-        }
     }
 
     // Product Card Interactions
@@ -162,40 +73,44 @@
         });
     }
 
-    // Sticky Header
-    function initStickyHeader() {
-        let lastScroll = 0;
-        const header = document.querySelector('.primary-header');
+    // Search form functionality
+    function initSearch() {
+        const searchInput = document.querySelector('.header-search');
+        if (searchInput) {
+            searchInput.addEventListener('focus', function() {
+                this.parentElement.classList.add('is-focused');
+            });
+            searchInput.addEventListener('blur', function() {
+                this.parentElement.classList.remove('is-focused');
+            });
+        }
+    }
 
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-
-            if (currentScroll <= 0) {
-                header.classList.remove('scroll-up', 'scroll-down');
-                return;
+    // Product slider with Flickity
+    function initProductSliders() {
+        const sliders = document.querySelectorAll('.products-slider');
+        sliders.forEach(slider => {
+            if (typeof Flickity !== 'undefined') {
+                new Flickity(slider, {
+                    cellAlign: 'left',
+                    contain: true,
+                    groupCells: true,
+                    pageDots: false,
+                    prevNextButtons: true,
+                    wrapAround: false
+                });
             }
-
-            if (currentScroll > lastScroll && !header.classList.contains('scroll-down')) {
-                header.classList.remove('scroll-up');
-                header.classList.add('scroll-down');
-            } else if (currentScroll < lastScroll && header.classList.contains('scroll-down')) {
-                header.classList.remove('scroll-down');
-                header.classList.add('scroll-up');
-            }
-
-            lastScroll = currentScroll;
         });
     }
 
     // Initialize everything when DOM is ready
     document.addEventListener('DOMContentLoaded', () => {
-        heroSlider.init();
-        initProductSliders();
+        initBulmaNavbar();
         initMegaMenu();
-        initMobileMenu();
         initProductCards();
         initScrollReveal();
-        initStickyHeader();
+        initSearch();
+        initProductSliders();
     });
 
 })();

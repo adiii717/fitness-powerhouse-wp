@@ -13,9 +13,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: fitness-powerhouse
 */
 
-/* Import Bulma */
-@import url('https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css');
-
 /* Theme Variables - Matching Original */
 :root {
     --primary-black: #000000;

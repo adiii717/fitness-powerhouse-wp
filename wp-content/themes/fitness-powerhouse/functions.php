@@ -84,27 +84,76 @@ add_action('after_setup_theme', 'fph_content_width', 0);
  * Enqueue scripts and styles
  */
 function fph_scripts() {
-    // Google Fonts
+    // Google Fonts - Outfit (used by original site)
     wp_enqueue_style(
         'fph-google-fonts',
-        'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap',
+        'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap',
         array(),
         null
     );
 
-    // Main stylesheet
+    // Bulma CSS Framework
+    wp_enqueue_style(
+        'bulma',
+        FPH_URI . '/assets/css/bulma.css',
+        array(),
+        FPH_VERSION
+    );
+
+    // Themify Icons
+    wp_enqueue_style(
+        'themify-icons',
+        FPH_URI . '/assets/css/themify-icons.css',
+        array(),
+        FPH_VERSION
+    );
+
+    // FPH Custom Icon Font
+    wp_enqueue_style(
+        'fph-icons',
+        FPH_URI . '/assets/css/fph.css',
+        array(),
+        FPH_VERSION
+    );
+
+    // Flickity Slider CSS
+    wp_enqueue_style(
+        'flickity',
+        FPH_URI . '/assets/css/flickity.min.css',
+        array(),
+        FPH_VERSION
+    );
+
+    // Custom CSS (original site styles)
+    wp_enqueue_style(
+        'fph-custom',
+        FPH_URI . '/assets/css/custom.css',
+        array('bulma', 'themify-icons', 'flickity'),
+        FPH_VERSION
+    );
+
+    // Main theme stylesheet
     wp_enqueue_style(
         'fph-style',
         get_stylesheet_uri(),
-        array(),
+        array('fph-custom'),
         FPH_VERSION
+    );
+
+    // Flickity Slider JS
+    wp_enqueue_script(
+        'flickity',
+        FPH_URI . '/assets/js/flickity.pkgd.min.js',
+        array(),
+        FPH_VERSION,
+        true
     );
 
     // Main script
     wp_enqueue_script(
         'fph-script',
         FPH_URI . '/assets/js/main.js',
-        array(),
+        array('flickity'),
         FPH_VERSION,
         true
     );
