@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  wordpress:
+    image: wordpress:6.4-php8.2-apache
+    container_name: fitness-wordpress
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: mysql:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress_secret
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DEBUG: 1
+    volumes:
+      - wordpress_data:/var/www/html
+      - ./wp-content/themes/fitness-powerhouse:/var/www/html/wp-content/themes/fitness-powerhouse
+      - ./wp-content/uploads:/var/www/html/wp-content/uploads
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - fitness-network
+
+  mysql:
+    image: mysql:8.0
+    container_name: fitness-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress_secret
+      MYSQL_ROOT_PASSWORD: root_secret
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot_secret"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - fitness-network
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: fitness-phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: wordpress
+      PMA_PASSWORD: wordpress_secret
+    depends_on:
+      - mysql
+    networks:
+      - fitness-network
+
+volumes:
+  wordpress_data:
+  mysql_data:
+
+networks:
+  fitness-network:
+    driver: bridge
