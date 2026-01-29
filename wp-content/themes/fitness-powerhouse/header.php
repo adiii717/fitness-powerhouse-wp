@@ -12,186 +12,314 @@
 
 <div class="desktop-overlay"></div>
 
-<?php fph_benefits_bar(); ?>
+<!-- Section Top - Fixed Header -->
+<div class="section-top">
+    <!-- Black Top Bar with Benefits -->
+    <div class="header-background mb-3 mt-2">
+        <div class="container">
+            <div class="columns topbar">
+                <div class="column has-text-white has-text-weight-medium">
+                    <img src="<?php echo FPH_URI; ?>/assets/images/icons/free-delivery.svg" width="20" onerror="this.style.display='none'">
+                    &nbsp;<?php _e('Free Delivery', 'fitness-powerhouse'); ?>
+                </div>
+                <div class="column has-text-white has-text-weight-medium">
+                    <img src="<?php echo FPH_URI; ?>/assets/images/icons/free-home-trial.svg" width="20" onerror="this.style.display='none'">
+                    &nbsp;<?php _e('Free Home Trial*', 'fitness-powerhouse'); ?>
+                </div>
+                <div class="column has-text-white has-text-weight-medium">
+                    <img src="<?php echo FPH_URI; ?>/assets/images/icons/free-installation.svg" width="20" onerror="this.style.display='none'">
+                    &nbsp;<?php _e('Free Installation*', 'fitness-powerhouse'); ?>
+                </div>
+                <div class="column has-text-white has-text-weight-medium">
+                    <img src="<?php echo FPH_URI; ?>/assets/images/icons/buy-now-pay-later.svg" width="20" onerror="this.style.display='none'">
+                    &nbsp;<?php _e('Buy Now Pay Later', 'fitness-powerhouse'); ?>
+                </div>
+                <div class="column has-text-white has-text-weight-medium">
+                    <img src="<?php echo FPH_URI; ?>/assets/images/icons/warranty.svg" width="20" onerror="this.style.display='none'">
+                    &nbsp;<?php _e('Genuine Product Warranty', 'fitness-powerhouse'); ?>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<header class="primary-header">
+    <!-- Primary Navigation -->
     <div class="container">
-        <nav class="primary-nav">
-            <?php fph_site_logo(); ?>
-
-            <div class="search-bar">
-                <form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
-                    <input type="search" name="s" placeholder="<?php esc_attr_e('What are you looking for?', 'fitness-powerhouse'); ?>" value="<?php echo get_search_query(); ?>">
-                    <button type="submit">
-                        <?php echo fph_get_svg_icon('search'); ?>
-                    </button>
-                </form>
-            </div>
-
-            <div class="header-actions">
-                <a href="#" class="lang-switch">العربية</a>
-                <a href="tel:<?php echo esc_attr(fph_get_option('fph_phone_number', '+971508429475')); ?>" class="phone-link">
-                    <?php echo fph_get_svg_icon('phone'); ?>
-                    <?php echo esc_html(fph_get_option('fph_phone_number', '+971 50 842 9475')); ?>
+        <nav class="navbar" id="primary-nav">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="<?php echo esc_url(home_url('/')); ?>">
+                    <?php if (has_custom_logo()) : ?>
+                        <?php the_custom_logo(); ?>
+                    <?php else : ?>
+                        <img src="<?php echo FPH_URI; ?>/assets/images/logo.svg" alt="<?php bloginfo('name'); ?>" width="200" height="50" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:20px;\'>FITNESS<br><small style=\'color:#ec1c24;font-size:10px;letter-spacing:2px;\'>POWERHOUSE</small></span>'">
+                    <?php endif; ?>
                 </a>
-                <?php if (class_exists('WooCommerce')) : ?>
-                    <a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>" class="action-icon">
-                        <?php echo fph_get_svg_icon('user'); ?>
-                    </a>
-                    <a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>wishlist" class="action-icon">
-                        <?php echo fph_get_svg_icon('heart'); ?>
-                        <span class="badge">0</span>
-                    </a>
-                    <a href="<?php echo esc_url(wc_get_cart_url()); ?>" class="action-icon cart-icon">
-                        <?php echo fph_get_svg_icon('cart'); ?>
-                        <span class="badge"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
-                    </a>
-                <?php else : ?>
-                    <a href="#" class="action-icon">
-                        <?php echo fph_get_svg_icon('user'); ?>
-                    </a>
-                    <a href="#" class="action-icon">
-                        <?php echo fph_get_svg_icon('heart'); ?>
-                        <span class="badge">0</span>
-                    </a>
-                    <a href="#" class="action-icon cart-icon">
-                        <?php echo fph_get_svg_icon('cart'); ?>
-                        <span class="badge">0</span>
-                    </a>
-                <?php endif; ?>
+                <div class="navbar-burger burger" data-target="navMenubd-example">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
 
-            <button class="mobile-menu-toggle" aria-label="<?php esc_attr_e('Toggle Menu', 'fitness-powerhouse'); ?>">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <div id="navMenubd-example" class="navbar-menu ml-5 mr-5">
+                <div class="navbar-end">
+                    <!-- Search Bar -->
+                    <div class="navbar-search control has-icons-right">
+                        <form action="<?php echo esc_url(home_url('/')); ?>" method="get">
+                            <input class="input is-rounded header-search" type="search" name="s" placeholder="<?php esc_attr_e('What you are looking for?', 'fitness-powerhouse'); ?>" autocomplete="off">
+                            <span class="icon is-small is-right">
+                                <i class="fa fas fa-search"></i>
+                            </span>
+                        </form>
+                    </div>
+
+                    <!-- Language Switch -->
+                    <div class="navbar-item">
+                        <div class="field is-grouped">
+                            <span class="navbar-link">العربية</span>
+
+                            <!-- Phone -->
+                            <a class="navbar-link pr-4 has-text-weight-bold" href="tel:<?php echo esc_attr(fph_get_option('fph_phone_number', '+971508429475')); ?>">
+                                <span class="ti-mobile"></span>&nbsp;
+                                <?php echo esc_html(fph_get_option('fph_phone_number', '+971 50 842 9475')); ?>
+                            </a>
+
+                            <!-- User Account -->
+                            <a class="navbar-link pr-4" href="<?php echo class_exists('WooCommerce') ? esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))) : '#'; ?>">
+                                <span class="ti-user"></span>
+                            </a>
+
+                            <!-- Wishlist -->
+                            <a class="navbar-link pr-4" href="#">
+                                <span class="ti-heart">
+                                    <em class="roundpoint" id="wishlistcountval">0</em>
+                                </span>
+                            </a>
+
+                            <!-- Cart -->
+                            <a class="navbar-link" href="<?php echo class_exists('WooCommerce') ? esc_url(wc_get_cart_url()) : '#'; ?>">
+                                <span class="ti-shopping-cart">
+                                    <em class="roundpoint" id="productcountval"><?php echo class_exists('WooCommerce') ? WC()->cart->get_cart_contents_count() : '0'; ?></em>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </nav>
     </div>
-</header>
+</div>
 
-<nav class="secondary-nav">
-    <div class="container">
-        <?php
-        if (has_nav_menu('primary')) {
-            wp_nav_menu(array(
-                'theme_location' => 'primary',
-                'container'      => false,
-                'menu_class'     => 'nav-menu',
-                'walker'         => new FPH_Mega_Menu_Walker(),
-                'fallback_cb'    => false,
-            ));
-        } else {
-            // Default menu for demo
-            ?>
-            <ul class="nav-menu">
-                <li class="nav-item has-mega-menu">
-                    <a href="#" class="nav-link">Cardio</a>
-                    <div class="mega-menu">
-                        <div class="mega-menu-content">
-                            <?php
-                            $cardio_items = array(
-                                array('name' => 'Treadmills', 'image' => 'treadmills.jpg'),
-                                array('name' => 'Cross Trainers', 'image' => 'exercise-bikes.jpg'),
-                                array('name' => 'Spinning Bikes', 'image' => 'exercise-bikes.jpg'),
-                                array('name' => 'Upright Bikes', 'image' => 'exercise-bikes.jpg'),
-                                array('name' => 'Recumbent Bikes', 'image' => 'exercise-bikes.jpg'),
-                                array('name' => 'Rowing Machines', 'image' => 'accessories.jpg'),
-                                array('name' => 'Air Bikes', 'image' => 'exercise-bikes.jpg'),
-                                array('name' => 'Steppers', 'image' => 'accessories.jpg'),
-                            );
-                            foreach ($cardio_items as $item) :
-                                ?>
-                                <a href="#" class="menu-category">
-                                    <div class="category-image">
-                                        <img src="<?php echo esc_url(FPH_URI . '/assets/images/categories/' . $item['image']); ?>" alt="<?php echo esc_attr($item['name']); ?>">
-                                    </div>
-                                    <h4><?php echo esc_html($item['name']); ?></h4>
-                                </a>
-                            <?php endforeach; ?>
+<!-- Secondary Navigation with Mega Menus -->
+<nav class="navbar section-top" id="secondary-nav" style="top:100px;">
+    <div class="navbar-start" style="margin-left: 10%;">
+
+        <!-- Cardio Menu -->
+        <div class="navbar-item navbar-heading has-dropdown is-hoverable is-mega">
+            <div class="navbar-link menu-head-link is-arrowless flex">
+                <a href="#"><?php _e('Cardio', 'fitness-powerhouse'); ?></a>
+            </div>
+            <div class="navbar-dropdown has-background-light">
+                <div class="container is-fluid">
+                    <div class="columns">
+                        <div class="column">
+                            <a class="nav-item" href="#">
+                                <img src="<?php echo FPH_URI; ?>/assets/images/categories/treadmills.jpg" alt="Treadmills" style="max-height:200px">
+                                <h4 class="menu-title"><?php _e('Treadmills', 'fitness-powerhouse'); ?></h4>
+                            </a>
+                        </div>
+                        <div class="column">
+                            <a class="nav-item" href="#">
+                                <img src="<?php echo FPH_URI; ?>/assets/images/categories/exercise-bikes.jpg" alt="Cross Trainers" style="max-height:200px">
+                                <h4 class="menu-title"><?php _e('Cross Trainers', 'fitness-powerhouse'); ?></h4>
+                            </a>
+                        </div>
+                        <div class="column">
+                            <a class="nav-item" href="#">
+                                <img src="<?php echo FPH_URI; ?>/assets/images/categories/exercise-bikes.jpg" alt="Spinning Bikes" style="max-height:200px">
+                                <h4 class="menu-title"><?php _e('Spinning Bikes', 'fitness-powerhouse'); ?></h4>
+                            </a>
+                        </div>
+                        <div class="column">
+                            <a class="nav-item" href="#">
+                                <img src="<?php echo FPH_URI; ?>/assets/images/categories/exercise-bikes.jpg" alt="Upright Bikes" style="max-height:200px">
+                                <h4 class="menu-title"><?php _e('Upright Bikes', 'fitness-powerhouse'); ?></h4>
+                            </a>
+                        </div>
+                        <div class="column">
+                            <a class="nav-item" href="#">
+                                <img src="<?php echo FPH_URI; ?>/assets/images/categories/accessories.jpg" alt="Rowing Machine" style="max-height:200px">
+                                <h4 class="menu-title"><?php _e('Rowing Machine', 'fitness-powerhouse'); ?></h4>
+                            </a>
+                        </div>
+                        <div class="column">
+                            <a class="nav-item" href="#">
+                                <img src="<?php echo FPH_URI; ?>/assets/images/categories/accessories.jpg" alt="Air Bike" style="max-height:200px">
+                                <h4 class="menu-title"><?php _e('Air Bike', 'fitness-powerhouse'); ?></h4>
+                            </a>
                         </div>
                     </div>
-                </li>
-                <li class="nav-item has-mega-menu">
-                    <a href="#" class="nav-link">Strength</a>
-                    <div class="mega-menu mega-menu-list">
-                        <div class="mega-menu-content">
-                            <div class="menu-column">
-                                <h5 class="column-title">Single Gym Station</h5>
-                                <a href="#">Ab Machine</a>
-                                <a href="#">Chest Press</a>
-                                <a href="#">Dips</a>
-                                <a href="#">Chest Fly</a>
-                                <a href="#">Preacher Curl</a>
-                                <a href="#">Shoulder Press</a>
-                            </div>
-                            <div class="menu-column">
-                                <h5 class="column-title">Categories</h5>
-                                <a href="#">Multi Gym Stations</a>
-                                <a href="#">Cable Machines</a>
-                                <a href="#">Power Cage</a>
-                                <a href="#">Smith Machine</a>
-                                <a href="#">Functional Trainers</a>
-                            </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Strength Menu -->
+        <div class="navbar-item navbar-heading has-dropdown is-hoverable is-mega">
+            <div class="navbar-link menu-head-link flex is-arrowless">
+                <a href="#"><?php _e('Strength', 'fitness-powerhouse'); ?></a>
+            </div>
+            <div class="navbar-dropdown has-background-light">
+                <div class="container is-fluid">
+                    <div class="columns">
+                        <div class="column even">
+                            <h1 class="title is-6 is-mega-menu-title"><?php _e('Single Gym Station', 'fitness-powerhouse'); ?></h1>
+                            <a class="navbar-item" href="#">Ab Machine</a>
+                            <a class="navbar-item" href="#">Chest Press</a>
+                            <a class="navbar-item" href="#">Dips</a>
+                            <a class="navbar-item" href="#">Chest Fly</a>
+                            <a class="navbar-item" href="#">Preacher Curl</a>
+                            <a class="navbar-item" href="#">Shoulder Press</a>
+                        </div>
+                        <div class="column">
+                            <h1 class="title is-6 is-mega-menu-title"><?php _e('Categories', 'fitness-powerhouse'); ?></h1>
+                            <a class="navbar-item" href="#">Multi Gym Stations</a>
+                            <a class="navbar-item" href="#">Cable Machines</a>
+                            <a class="navbar-item" href="#">Power Cage & Squat Rack</a>
+                            <a class="navbar-item" href="#">Smith Machine</a>
+                            <a class="navbar-item" href="#">Functional Trainers</a>
                         </div>
                     </div>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Bench & Rack</a>
-                </li>
-                <li class="nav-item has-mega-menu">
-                    <a href="#" class="nav-link">Weights</a>
-                    <div class="mega-menu">
-                        <div class="mega-menu-content">
-                            <?php
-                            $weight_items = array(
-                                array('name' => 'Kettlebells', 'image' => 'dumbbells.jpg'),
-                                array('name' => 'Dumbbells', 'image' => 'dumbbells.jpg'),
-                                array('name' => 'Weight Plates', 'image' => 'weight-plates.jpg'),
-                                array('name' => 'Barbells', 'image' => 'weight-plates.jpg'),
-                                array('name' => 'Medicine Balls', 'image' => 'accessories.jpg'),
-                            );
-                            foreach ($weight_items as $item) :
-                                ?>
-                                <a href="#" class="menu-category">
-                                    <div class="category-image">
-                                        <img src="<?php echo esc_url(FPH_URI . '/assets/images/categories/' . $item['image']); ?>" alt="<?php echo esc_attr($item['name']); ?>">
-                                    </div>
-                                    <h4><?php echo esc_html($item['name']); ?></h4>
-                                </a>
-                            <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bench & Rack -->
+        <div class="navbar-item navbar-heading has-dropdown is-hoverable is-mega">
+            <div class="navbar-link menu-head-link flex is-arrowless">
+                <a href="#"><?php _e('Bench & Rack', 'fitness-powerhouse'); ?></a>
+            </div>
+            <div class="navbar-dropdown has-background-light">
+                <div class="container is-fluid">
+                    <div class="columns">
+                        <div class="column">
+                            <h1 class="title is-6 is-mega-menu-title"><?php _e('Benches', 'fitness-powerhouse'); ?></h1>
+                            <a class="navbar-item" href="#">Adjustable Bench</a>
+                            <a class="navbar-item" href="#">Ab Bench</a>
+                            <a class="navbar-item" href="#">Flat Bench</a>
+                            <a class="navbar-item" href="#">Incline Bench</a>
+                            <a class="navbar-item" href="#">Decline Bench</a>
+                        </div>
+                        <div class="column">
+                            <h1 class="title is-6 is-mega-menu-title"><?php _e('Racks', 'fitness-powerhouse'); ?></h1>
+                            <a class="navbar-item" href="#">Dumbbell Racks</a>
+                            <a class="navbar-item" href="#">Barbell Racks</a>
+                            <a class="navbar-item" href="#">Plate Rack</a>
+                            <a class="navbar-item" href="#">Kettlebell Rack</a>
                         </div>
                     </div>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Game Tables</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Yoga & Pilates</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Body Massagers</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Outdoor</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Sports</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Accessories</a>
-                </li>
-                <li class="nav-item nav-commercial">
-                    <a href="#" class="nav-link">Commercial</a>
-                </li>
-                <li class="nav-item nav-brands">
-                    <a href="#" class="nav-link">Brands</a>
-                </li>
-            </ul>
-            <?php
-        }
-        ?>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weights Menu -->
+        <div class="navbar-item navbar-heading has-dropdown is-hoverable is-mega">
+            <div class="navbar-link menu-head-link is-arrowless flex">
+                <a href="#"><?php _e('Weights', 'fitness-powerhouse'); ?></a>
+            </div>
+            <div class="navbar-dropdown has-background-light">
+                <div class="container is-fluid">
+                    <div class="columns">
+                        <div class="column">
+                            <a class="nav-item" href="#">
+                                <img src="<?php echo FPH_URI; ?>/assets/images/categories/dumbbells.jpg" alt="Kettlebells" style="max-height:200px">
+                                <h4 class="menu-title"><?php _e('Kettlebells', 'fitness-powerhouse'); ?></h4>
+                            </a>
+                        </div>
+                        <div class="column">
+                            <a class="nav-item" href="#">
+                                <img src="<?php echo FPH_URI; ?>/assets/images/categories/dumbbells.jpg" alt="Dumbbells" style="max-height:200px">
+                                <h4 class="menu-title"><?php _e('Dumbbells', 'fitness-powerhouse'); ?></h4>
+                            </a>
+                        </div>
+                        <div class="column">
+                            <a class="nav-item" href="#">
+                                <img src="<?php echo FPH_URI; ?>/assets/images/categories/weight-plates.jpg" alt="Weight Plates" style="max-height:200px">
+                                <h4 class="menu-title"><?php _e('Weight Plates', 'fitness-powerhouse'); ?></h4>
+                            </a>
+                        </div>
+                        <div class="column">
+                            <a class="nav-item" href="#">
+                                <img src="<?php echo FPH_URI; ?>/assets/images/categories/weight-plates.jpg" alt="Barbells" style="max-height:200px">
+                                <h4 class="menu-title"><?php _e('Barbells', 'fitness-powerhouse'); ?></h4>
+                            </a>
+                        </div>
+                        <div class="column">
+                            <a class="nav-item" href="#">
+                                <img src="<?php echo FPH_URI; ?>/assets/images/categories/accessories.jpg" alt="Medicine Ball" style="max-height:200px">
+                                <h4 class="menu-title"><?php _e('Medicine Ball', 'fitness-powerhouse'); ?></h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Tables -->
+        <div class="navbar-item navbar-heading has-dropdown is-hoverable">
+            <div class="navbar-link menu-head-link is-arrowless flex">
+                <a href="#"><?php _e('Game Tables', 'fitness-powerhouse'); ?></a>
+            </div>
+        </div>
+
+        <!-- Yoga & Pilates -->
+        <div class="navbar-item navbar-heading has-dropdown is-hoverable">
+            <div class="navbar-link menu-head-link is-arrowless flex">
+                <a href="#"><?php _e('Yoga & Pilates', 'fitness-powerhouse'); ?></a>
+            </div>
+        </div>
+
+        <!-- Body Massagers -->
+        <div class="navbar-item navbar-heading">
+            <div class="navbar-link menu-head-link flex is-arrowless">
+                <a href="#"><?php _e('Body Massagers', 'fitness-powerhouse'); ?></a>
+            </div>
+        </div>
+
+        <!-- Outdoor -->
+        <div class="navbar-item navbar-heading">
+            <div class="navbar-link menu-head-link flex is-arrowless">
+                <a href="#"><?php _e('Outdoor', 'fitness-powerhouse'); ?></a>
+            </div>
+        </div>
+
+        <!-- Sports -->
+        <div class="navbar-item navbar-heading">
+            <div class="navbar-link menu-head-link flex is-arrowless">
+                <a href="#"><?php _e('Sports', 'fitness-powerhouse'); ?></a>
+            </div>
+        </div>
+
+        <!-- Accessories -->
+        <div class="navbar-item navbar-heading">
+            <div class="navbar-link menu-head-link flex is-arrowless">
+                <a href="#"><?php _e('Accessories', 'fitness-powerhouse'); ?></a>
+            </div>
+        </div>
+
+        <!-- Commercial -->
+        <div class="navbar-item navbar-heading">
+            <div class="navbar-link menu-head-link menu-commercial is-arrowless flex">
+                <a href="#" style="color:#ec1c24;font-weight:600;"><?php _e('Commercial', 'fitness-powerhouse'); ?></a>
+            </div>
+        </div>
+
+        <!-- Brands - Red Background -->
+        <div class="navbar-item navbar-heading brands-menu">
+            <div class="navbar-link menu-head-link is-arrowless flex">
+                <a href="#"><?php _e('Brands', 'fitness-powerhouse'); ?></a>
+            </div>
+        </div>
+
     </div>
 </nav>
 
-<main id="main-content" class="site-main">
+<main id="main-content" class="site-main" style="margin-top: 160px;">
