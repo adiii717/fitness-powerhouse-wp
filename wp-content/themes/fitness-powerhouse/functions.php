@@ -100,12 +100,12 @@ function fph_scripts() {
         FPH_VERSION
     );
 
-    // Themify Icons
+    // Themify Icons (from CDN)
     wp_enqueue_style(
         'themify-icons',
-        FPH_URI . '/assets/css/themify-icons.css',
+        'https://cdnjs.cloudflare.com/ajax/libs/themify-icons/0.1.2/css/themify-icons.css',
         array(),
-        FPH_VERSION
+        null
     );
 
     // FPH Custom Icon Font
